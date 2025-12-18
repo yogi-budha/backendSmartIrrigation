@@ -5,6 +5,7 @@ const sensorSchema = new mongoose.Schema({
   type: { type: String, enum: ["moisture", "temperature", "humidity"], required: true },
   status: { type: String, enum: ["active", "inactive", "faulty"], default: "active" },
   lastReading: { type: Number },
+  readings : [{ type: mongoose.Schema.Types.ObjectId, ref: "SensorData" }],
 },{timestamps: true});
 
 const Sensor = mongoose.model("Sensor", sensorSchema);

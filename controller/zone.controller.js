@@ -2,14 +2,14 @@ import Zone from '../models/zone.model.js';
 export const createZone = async (req, res) => {
   try {
     // console.log(req.body,req.params)
-    const { zone_name, cropsTypes,soilTypes, area } = req.body;
+    const { zone_name, cropType,soilType, area } = req.body;
     const {farm_id} = req.params
 
     const newZone = new Zone({
       farmId: farm_id,
       zone_name,
-      cropsTypes,
-      soilTypes,
+      cropType,
+      soilType,
       area,
     });
 
@@ -31,8 +31,9 @@ export const createZone = async (req, res) => {
 
 export const getZone = async (req, res) => {
   try {
-
+    console.log("this is first line of getZone")
     const zone = await Zone.find();
+    console.log("this is zone",zone)
 
     if (!zone) {
       return res.status(404).json({
